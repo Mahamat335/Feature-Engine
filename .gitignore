@@ -1,0 +1,10 @@
+*
+!Header Files/
+!resources/
+!src/
+!Header Files/**
+!resources/**
+!src/**
+!.gitignore
+!CMakeLists.txt
+!README.md
