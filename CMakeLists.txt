@@ -14,11 +14,21 @@ add_executable(Feature-Engine
     src/glad.c # Add glad.c explicitly if it's not a .cpp file
 )
 
-# Add include directory for glad
+# Add include directories
 target_include_directories(Feature-Engine PRIVATE 
     ${CMAKE_SOURCE_DIR}/Libraries/include
     "${CMAKE_SOURCE_DIR}/Header Files"
 )
+
+# Copy or link the resources folder to the build directory
+if (UNIX)
+    # Create a symbolic link for resources on Unix systems
+    execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink
+        "${CMAKE_SOURCE_DIR}/resources" "${CMAKE_BINARY_DIR}/resources")
+elseif (WIN32)
+    # Copy resources folder on Windows
+    file(COPY "${CMAKE_SOURCE_DIR}/resources" DESTINATION "${CMAKE_BINARY_DIR}")
+endif()
 
 include(CTest)
 enable_testing()
