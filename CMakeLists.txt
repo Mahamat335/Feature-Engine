@@ -11,13 +11,14 @@ file(GLOB_RECURSE SOURCES ${CMAKE_SOURCE_DIR}/src/*.cpp)
 # Add the executable with the collected source files
 add_executable(Feature-Engine
     ${SOURCES}
-    src/glad.c # Add glad.c explicitly if it's not a .cpp file
+    ${CMAKE_SOURCE_DIR}/src/glad.c # Add glad.c explicitly if it's not a .cpp file
 )
 
 # Add include directories
 target_include_directories(Feature-Engine PRIVATE 
     ${CMAKE_SOURCE_DIR}/Libraries/include
     "${CMAKE_SOURCE_DIR}/Header Files"
+    "${CMAKE_SOURCE_DIR}/Header Files/Rendering"
 )
 
 # Copy or link the resources folder to the build directory
